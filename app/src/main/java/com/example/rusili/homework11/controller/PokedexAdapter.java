@@ -32,7 +32,7 @@ import java.util.List;
 public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder> {
 
 
-    private ArrayList<PokemonSet>  sets;
+    private ArrayList<PokemonSet> sets;
     private Context context;
 
     public PokedexAdapter(Context context) {
@@ -57,7 +57,7 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
             @Override
             public void onClick(View view) {
                 //Toast.makeText(view.getContext(), holder.email.getText(), Toast.LENGTH_SHORT).show();
-                Intent intent= new Intent(view.getContext(), PokemonDetailActivity.class);
+                Intent intent = new Intent(view.getContext(), PokemonDetailActivity.class);
                 intent.putExtra("pokemon", holder.pokedexText.getText());
                 view.getContext().startActivity(intent);
 
@@ -66,7 +66,7 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
 
         Glide.with(context)
                 .load("http://pokeapi.co/media/sprites/pokemon/" + pokemonSet.getNumber() + ".png")
-                .into(holder.image);
+                .into(holder.pokedexView);
 
     }
 
@@ -82,18 +82,16 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
 
     public class PokedexViewHolder extends RecyclerView.ViewHolder {
 
-         ImageView pokedexView;
-         TextView pokedexText;
+        ImageView pokedexView;
+        TextView pokedexText;
         CardView layout;
-        ImageView image;
 
         public PokedexViewHolder(View itemView) {
             super(itemView);
 
-            //pokedexView = (ImageView) itemView.findViewById(R.id.pokedex_imageview);
+            pokedexView = (ImageView) itemView.findViewById(R.id.pokedex_imageview);
             pokedexText = (TextView) itemView.findViewById(R.id.pokedex_textview);
-            layout= (CardView) itemView.findViewById(R.id.idLayout);
-            image = (ImageView) itemView.findViewById(R.id.pokedex_imageview);
+            layout = (CardView) itemView.findViewById(R.id.idLayout);
         }
     }
 }
