@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.main_container, pokedexFragment);
         fragmentTransaction.commit();
         Log.d("main", "frag ran");
-
     }
 }
 
