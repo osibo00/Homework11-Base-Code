@@ -8,7 +8,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.rusili.homework11.R;
 import com.example.rusili.homework11.detailscreen.model.Pokemon;
 import com.example.rusili.homework11.detailscreen.model.objects.Stat;
@@ -16,6 +18,7 @@ import com.example.rusili.homework11.detailscreen.model.objects.Stats;
 import com.example.rusili.homework11.detailscreen.model.objects.Type;
 import com.example.rusili.homework11.detailscreen.model.objects.Types;
 import com.example.rusili.homework11.network.RetrofitFactory;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -58,27 +61,28 @@ public class PokemonDetailActivity extends AppCompatActivity{
                 //TODO: Display pokemon data
                 //Hint: Learn how to use Glide to display an image.
 
+//                Glide.with(getApplicationContext())
+//                        .load(pokemon.getSprites().getFront_default())
+//
+//                        .override(600, 200)
+//                        .into((ImageView)findViewById(R.id.pokemonimage_ImageView));
+
+
+
                 Glide.with(getApplicationContext())
                         .load(pokemon.getSprites().getFront_default())
-                        .into((ImageView)findViewById(R.id.pokemonimage_ImageView) );
+                        .apply(new RequestOptions().fitCenter())
+                        .into((ImageView)findViewById(R.id.pokemonimage_ImageView));
 
-//
-//                ArrayList<Stats[]> list = new ArrayList<>();
-//
-//
-//                Stats stats=new Stats();
-//                //list.addAll(0, stats);
-//
-////stats[0].getStat.getName
-//                pokemon.setStats();
-//                System.out.println("LISSSSSSSSST"+stats.getStat().getName());
 
-//                pokemon.getStats();
-//
-//
-//                ArrayList<String> list = new ArrayList<>();
-//
-//                list.add(pokemon.getStats());
+//                Picasso.with(getApplicationContext())
+//                        .load(pokemon.getSprites().getFront_default())
+//                        .resize(100, 100)
+//                        .into((ImageView)findViewById(R.id.pokemonimage_ImageView));
+
+
+
+
 
 
                 Stats []stats= pokemon.getStats();
