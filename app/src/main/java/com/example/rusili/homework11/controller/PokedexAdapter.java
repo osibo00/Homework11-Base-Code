@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.rusili.homework11.R;
 
 import com.example.rusili.homework11.detailscreen.model.Pokemon;
@@ -19,6 +20,7 @@ import com.example.rusili.homework11.network.RetrofitFactory;
 import com.example.rusili.homework11.pokedexActivity.model.Pokedex;
 
 import com.example.rusili.homework11.pokedexActivity.model.objects.PokemonEntries;
+import com.example.rusili.homework11.recyclerviewscreen.model.PokemonSet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,13 +32,12 @@ import java.util.List;
 public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder> {
 
 
-    private List<PokemonEntries> pokemonEntriesList;
+    private ArrayList<PokemonSet>  sets;
     private Context context;
 
-
-    public PokedexAdapter(List<PokemonEntries> pokemonEntriesList, Context context) {
-        this.pokemonEntriesList = pokemonEntriesList;
-        this.context=context;
+    public PokedexAdapter(Context context) {
+        this.context = context;
+        sets = new ArrayList<>();
     }
 
 
@@ -48,21 +49,8 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
 
     @Override
     public void onBindViewHolder(final PokedexViewHolder holder, int position) {
-        PokemonEntries pokemonEntries = pokemonEntriesList.get(position);
-        final String pokemonName= pokemonEntries.getPokemon_species().getName();
-        holder.pokedexText.setText(pokemonName);
-
-//        RetrofitFactory.getInstance().setPokemonNetworkListener(new RetrofitFactory.PokemonNetworkListener() {
-//            @Override
-//            public void pokemonCallback(Pokemon pokemon) {
-//                System.out.println(pokemonName + " " + pokemon.getSprites().getBack_default());
-//
-//                Glide.with(context)
-//                        .load(pokemon.getSprites().getBack_default())
-//                        .into(holder.image);
-//            }
-//        });
-//        RetrofitFactory.getInstance().getPokemon(pokemonName);
+        PokemonSet pokemonSet = sets.get(position);
+        holder.pokedexText.setText(pokemonSet.getName());
 
         //Onclick listener
         holder.layout.setOnClickListener(new View.OnClickListener() {
@@ -76,11 +64,20 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
             }
         });
 
+        Glide.with(context)
+                .load("http://pokeapi.co/media/sprites/pokemon/" + pokemonSet.getNumber() + ".png")
+                .into(holder.image);
+
     }
 
     @Override
     public int getItemCount() {
-        return pokemonEntriesList.size();
+        return sets.size();
+    }
+
+    public void listPokemonSet(ArrayList<PokemonSet> pokemonSets) {
+        sets.addAll(pokemonSets);
+        notifyDataSetChanged();
     }
 
     public class PokedexViewHolder extends RecyclerView.ViewHolder {
