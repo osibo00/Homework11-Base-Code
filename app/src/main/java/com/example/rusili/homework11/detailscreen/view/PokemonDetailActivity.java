@@ -1,9 +1,12 @@
 package com.example.rusili.homework11.detailscreen.view;
 
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.rusili.homework11.MainActivity;
 import com.example.rusili.homework11.R;
 import com.example.rusili.homework11.detailscreen.model.Pokemon;
 import com.example.rusili.homework11.detailscreen.model.objects.Stat;
@@ -18,6 +22,7 @@ import com.example.rusili.homework11.detailscreen.model.objects.Stats;
 import com.example.rusili.homework11.detailscreen.model.objects.Type;
 import com.example.rusili.homework11.detailscreen.model.objects.Types;
 import com.example.rusili.homework11.network.RetrofitFactory;
+import com.example.rusili.homework11.pokedexActivity.view.PokedexFragment;
 
 import java.util.ArrayList;
 
@@ -39,20 +44,27 @@ public class PokemonDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_layout);
         //intent = getIntent();
-        intent= getIntent();
+        intent = getIntent();
 
         id = intent.getStringExtra("pokemon");
 
 
-        url= intent.getStringExtra("url");
+        url = intent.getStringExtra("url");
 
-
+        String pokemonName = intent.getStringExtra("pokemon");
+        CharSequence nameSeq = pokemonName.substring(0, pokemonName.length()).toUpperCase();
+        this.setTitle(nameSeq);
 
         namePokemon = (TextView) findViewById(R.id.nameTextView);
         namePokemon.setText(id);
         statsTextView = (TextView) findViewById(R.id.statsTextView);
         typeTextView = (TextView) findViewById(R.id.typeTextView);
         averageTextView = (TextView) findViewById(R.id.averageTextView);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
 
         initialize();
     }
@@ -74,12 +86,9 @@ public class PokemonDetailActivity extends AppCompatActivity {
 
                 Glide.with(getApplicationContext())
                         .load(pokemon.getSprites().getFront_default())
+
                         .apply(new RequestOptions().centerCrop().fitCenter())
                         .into((ImageView) findViewById(R.id.pokemonimage_ImageView));
-
-
-
-
 
                 Stats[] stats = pokemon.getStats();
                 Types[] types = pokemon.getTypes();
@@ -122,6 +131,16 @@ public class PokemonDetailActivity extends AppCompatActivity {
         };
         RetrofitFactory.getInstance().setPokemonNetworkListener(pokemonNetworkListener);
         RetrofitFactory.getInstance().getPokemon(id);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 
