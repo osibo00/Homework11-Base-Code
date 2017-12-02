@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.7"
         android:orientation="horizontal"
         >
 
@@ -22,7 +22,6 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:orientation="vertical"
             >
             <TextView
@@ -30,16 +29,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pokemon"
-                android:gravity="center"
                 android:textSize="20sp"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 android:textAllCaps="true"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
                 />
+
             <ImageView
                 android:id="@+id/pokemonimage_ImageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 />
 
         </LinearLayout>
@@ -93,9 +95,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="1.2"
         android:orientation="vertical"
-        android:background="#fafafa">
+        android:background="#fafafa"
+        android:gravity="center">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -104,12 +107,14 @@
             app:cardElevation="5dp"
             app:cardUseCompatPadding="true"
             app:contentPadding="5dp"
+
             >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
                 <TextView
                     android:layout_width="match_parent"
@@ -137,39 +142,48 @@
         </android.support.v7.widget.CardView>
 
 
-
-        <ProgressBar
-            android:id="@+id/simpleProgressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:indeterminate="false"
-            android:max="100"
-            android:minHeight="20dp"
-            android:minWidth="200dp"
-            android:progress="1"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"/>
-        <TextView
-            android:id="@+id/averageTextView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="50%"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/titleTextView"
-            />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Average Power"
-            android:textColor="@color/colorRed"
-            android:gravity="center"
-            android:textSize="@dimen/titleTextView"
-            />
+
+            <ProgressBar
+                android:id="@+id/simpleProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:indeterminate="false"
+                android:max="100"
+                android:minHeight="20dp"
+                android:minWidth="200dp"
+                android:progress="1"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/averageTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="50%"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/titleTextView"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Average Power"
+                android:textColor="@color/colorRed"
+                android:gravity="center"
+                android:textSize="@dimen/titleTextView"
+                />
+        </LinearLayout>
+
 
 
 

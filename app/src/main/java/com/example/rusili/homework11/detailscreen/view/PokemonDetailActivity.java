@@ -74,8 +74,12 @@ public class PokemonDetailActivity extends AppCompatActivity {
 
                 Glide.with(getApplicationContext())
                         .load(pokemon.getSprites().getFront_default())
-                        .apply(new RequestOptions().placeholder(R.drawable.ball2).centerCrop())
+                        .apply(new RequestOptions().centerCrop().fitCenter())
                         .into((ImageView) findViewById(R.id.pokemonimage_ImageView));
+
+
+
+
 
                 Stats[] stats = pokemon.getStats();
                 Types[] types = pokemon.getTypes();
