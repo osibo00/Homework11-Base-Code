@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.rusili.homework11.R;
 import com.example.rusili.homework11.detailscreen.model.Pokemon;
@@ -71,12 +72,9 @@ public class PokemonDetailActivity extends AppCompatActivity {
 //                        .into((ImageView) findViewById(R.id.pokemonimage_ImageView));
 
 
-
-
-
-
                 Glide.with(getApplicationContext())
                         .load(pokemon.getSprites().getFront_default())
+                        .apply(new RequestOptions().placeholder(R.drawable.ball2).centerCrop())
                         .into((ImageView) findViewById(R.id.pokemonimage_ImageView));
 
                 Stats[] stats = pokemon.getStats();

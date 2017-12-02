@@ -1,17 +1,22 @@
 package com.example.rusili.homework11.pokedexActivity.view;
 
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.rusili.homework11.ErrorFragment;
 import com.example.rusili.homework11.R;
 import com.example.rusili.homework11.controller.PokedexAdapter;
 import com.example.rusili.homework11.recyclerviewscreen.api.PokemonSetApi;
@@ -49,6 +54,7 @@ public class PokedexFragment extends Fragment {
         recyclerView.setLayoutManager(gridLayoutManager);
 
 
+
         final FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setVisibility(View.GONE);
 
@@ -57,14 +63,10 @@ public class PokedexFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-
                 recyclerView.smoothScrollToPosition(0);
 
             }
         });
-
-
-
 
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -75,8 +77,6 @@ public class PokedexFragment extends Fragment {
                 int visibleItemCount = gridLayoutManager.getChildCount();
                 int totalItemCount = gridLayoutManager.getItemCount();
                 int pastVisibleItems = gridLayoutManager.findFirstVisibleItemPosition();
-
-
 
                 if(dy<=0){
                     fab.setVisibility(View.GONE);
@@ -94,18 +94,10 @@ public class PokedexFragment extends Fragment {
                         }
                     }
 
-
-
-
                         fab.setVisibility(View.VISIBLE);
 
 
-
-
-
                 }
-
-
 
             }
         });
@@ -148,6 +140,16 @@ public class PokedexFragment extends Fragment {
             public void onFailure(@NonNull Call<PokemonData> call, @NonNull Throwable t) {
                 canLoad = true;
                 Log.e("onFailure: ", t.getMessage());
+                ErrorFragment errorFragment= new ErrorFragment();
+                getFragmentManager().beginTransaction().replace(R.id.main_container, errorFragment).commit();
+
+
+//                PokedexFragment pokedexFragment = new PokedexFragment();
+//                FragmentManager fragmentManager = getSupportFragmentManager();
+//                android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.main_container, pokedexFragment);
+//                fragmentTransaction.commit();
+
             }
         });
     }

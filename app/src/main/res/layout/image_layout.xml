@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorDarkGray"
@@ -96,26 +97,45 @@
         android:orientation="vertical"
         android:background="#fafafa">
 
-
-
-
-        <TextView
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:text="Stats"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="@dimen/titleTextView"/>
+            app:cardCornerRadius="4dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true"
+            app:contentPadding="5dp"
+            >
 
-        <TextView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            android:id="@+id/statsTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@android:color/black"
-            android:layout_marginLeft="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:text="Stats"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/titleTextView"/>
+
+                <TextView
+
+                    android:id="@+id/statsTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black"
+                    android:layout_marginLeft="10dp"
+                    />
+
+            </LinearLayout>
+
+
+
+        </android.support.v7.widget.CardView>
+
 
 
         <ProgressBar
@@ -126,7 +146,7 @@
             android:layout_centerHorizontal="true"
             android:indeterminate="false"
             android:max="100"
-            android:minHeight="50dp"
+            android:minHeight="20dp"
             android:minWidth="200dp"
             android:progress="1"
             android:layout_centerVertical="true"
