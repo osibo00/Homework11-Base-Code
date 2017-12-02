@@ -47,14 +47,42 @@ public class PokedexFragment extends Fragment {
         recyclerView.setAdapter(pokedexAdapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(gridLayoutManager);
+
+
+        final FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setVisibility(View.GONE);
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                recyclerView.smoothScrollToPosition(0);
+
+            }
+        });
+
+
+
+
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+
+                int visibleItemCount = gridLayoutManager.getChildCount();
+                int totalItemCount = gridLayoutManager.getItemCount();
+                int pastVisibleItems = gridLayoutManager.findFirstVisibleItemPosition();
+
+
+
+                if(dy<=0){
+                    fab.setVisibility(View.GONE);
+                }
+
                 if (dy > 0) {
-                    int visibleItemCount = gridLayoutManager.getChildCount();
-                    int totalItemCount = gridLayoutManager.getItemCount();
-                    int pastVisibleItems = gridLayoutManager.findFirstVisibleItemPosition();
 
                     if (canLoad) {
                         if ((visibleItemCount + pastVisibleItems) >= totalItemCount) {
@@ -65,19 +93,24 @@ public class PokedexFragment extends Fragment {
                             getPokemonData(offset);
                         }
                     }
+
+
+
+
+                        fab.setVisibility(View.VISIBLE);
+
+
+
+
+
                 }
-            }
-        });
 
-        final FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                recyclerView.smoothScrollToPosition(0);
 
             }
         });
+
+
 
         unlimitedPower();
         return view;

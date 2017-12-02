@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorDarkGray"
     android:orientation="vertical"
+    android:layout_margin="5dp"
     >
 
 
@@ -13,7 +15,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:background="@color/colorRed"
         >
 
         <LinearLayout
@@ -21,11 +22,23 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:orientation="vertical"
             >
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pokemon"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                />
             <ImageView
                 android:id="@+id/pokemonimage_ImageView"
-                android:layout_width="96dp"
-                android:layout_height="96dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 />
 
         </LinearLayout>
@@ -37,52 +50,38 @@
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:gravity="center"
             >
 
 
-            <TextView
-                android:id="@+id/nameTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                android:textAllCaps="true"
-                />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:text="Stats"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textSize="@dimen/titleTextView"/>
-            <TextView
 
-                android:id="@+id/statsTextView"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@android:color/white"/>
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:text="Type"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textSize="@dimen/titleTextView"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:text="Type"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/titleTextView"/>
 
-            <TextView
-                android:id="@+id/typeTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="@android:color/white"/>
+                <TextView
+                    android:id="@+id/typeTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+
 
 
         </LinearLayout>
@@ -94,7 +93,29 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#fafafa">
+
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:text="Stats"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="@dimen/titleTextView"/>
+
+        <TextView
+
+            android:id="@+id/statsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:layout_marginLeft="10dp"/>
 
 
         <ProgressBar
@@ -117,6 +138,7 @@
             android:text="50%"
             android:textStyle="bold"
             android:gravity="center"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/titleTextView"
             />
 

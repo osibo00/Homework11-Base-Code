@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.rusili.homework11.R;
 import com.example.rusili.homework11.detailscreen.model.Pokemon;
 import com.example.rusili.homework11.detailscreen.model.objects.Stat;
@@ -28,13 +29,22 @@ public class PokemonDetailActivity extends AppCompatActivity {
     TextView typeTextView;
     TextView averageTextView;
 
+    Intent intent;
+
+    String url;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.image_layout);
-        Intent intent = getIntent();
+        //intent = getIntent();
+        intent= getIntent();
+
         id = intent.getStringExtra("pokemon");
+
+
+        url= intent.getStringExtra("url");
+
 
 
         namePokemon = (TextView) findViewById(R.id.nameTextView);
@@ -54,6 +64,16 @@ public class PokemonDetailActivity extends AppCompatActivity {
         pokemonNetworkListener = new RetrofitFactory.PokemonNetworkListener() {
             @Override
             public void pokemonCallback(Pokemon pokemon) {
+
+//                Glide.with(getApplicationContext())
+//                        .load(url)
+//                        .apply(new RequestOptions().override(600, 200))
+//                        .into((ImageView) findViewById(R.id.pokemonimage_ImageView));
+
+
+
+
+
 
                 Glide.with(getApplicationContext())
                         .load(pokemon.getSprites().getFront_default())
@@ -76,6 +96,7 @@ public class PokemonDetailActivity extends AppCompatActivity {
                 }
 
                 for (int i = 0; i < types.length; i++) {
+
                     typ += types[i].getType().getName() + "\n";
                     System.out.println("Number= " + i + "  " + types[i].getType().getName());
 

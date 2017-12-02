@@ -32,6 +32,8 @@ import java.util.List;
 public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexViewHolder> {
 
 
+    private PokemonSet pokemonSet;
+
     private ArrayList<PokemonSet> sets;
     private Context context;
 
@@ -49,7 +51,7 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
 
     @Override
     public void onBindViewHolder(final PokedexViewHolder holder, int position) {
-        PokemonSet pokemonSet = sets.get(position);
+        pokemonSet = sets.get(position);
         holder.pokedexText.setText(pokemonSet.getName());
 
         //Onclick listener
@@ -59,6 +61,7 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
                 //Toast.makeText(view.getContext(), holder.email.getText(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(view.getContext(), PokemonDetailActivity.class);
                 intent.putExtra("pokemon", holder.pokedexText.getText());
+                intent.putExtra("url", "http://pokeapi.co/media/sprites/pokemon/" + pokemonSet.getNumber() + ".png");
                 view.getContext().startActivity(intent);
 
             }
@@ -67,6 +70,7 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
         Glide.with(context)
                 .load("http://pokeapi.co/media/sprites/pokemon/" + pokemonSet.getNumber() + ".png")
                 .into(holder.pokedexView);
+
 
     }
 

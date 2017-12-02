@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.rusili.homework11.MainActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/pokedex_frag_recyclerview"
-        android:layout_marginBottom="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="5dp" />
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -21,6 +20,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:layout_marginBottom="30dp"
-        android:src="@drawable/ic_keyboard_arrow_up_black_24dp"/>
+        android:src="@drawable/ic_keyboard_arrow_up_black_24dp" />
 
 </RelativeLayout>
