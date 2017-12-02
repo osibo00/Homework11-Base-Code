@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.rusili.homework11.R;
 
 import com.example.rusili.homework11.detailscreen.model.Pokemon;
@@ -69,9 +71,9 @@ public class PokedexAdapter extends RecyclerView.Adapter<PokedexAdapter.PokedexV
 
         Glide.with(context)
                 .load("http://pokeapi.co/media/sprites/pokemon/" + pokemonSet.getNumber() + ".png")
+                .apply(new RequestOptions().placeholder(R.drawable.ball2).diskCacheStrategy(DiskCacheStrategy.ALL))
+                .thumbnail(0.5f)
                 .into(holder.pokedexView);
-
-
     }
 
     @Override

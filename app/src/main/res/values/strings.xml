@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">PokeDex</string>
     <string name="baseUrl">http://pokeapi.co/api/v2/</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="errorMessage">ERROR LOADING PAGE !!!</string>
+    <string name="errorMessage2">Wait a few minutes and Open The app Again The Server is busy</string>
 </resources>

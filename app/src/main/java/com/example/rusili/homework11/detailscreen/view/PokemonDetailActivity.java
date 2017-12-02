@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.rusili.homework11.MainActivity;
 import com.example.rusili.homework11.R;
@@ -85,6 +86,8 @@ public class PokemonDetailActivity extends AppCompatActivity {
 
                 Glide.with(getApplicationContext())
                         .load(pokemon.getSprites().getFront_default())
+
+                        .apply(new RequestOptions().centerCrop().fitCenter())
                         .into((ImageView) findViewById(R.id.pokemonimage_ImageView));
 
                 Stats[] stats = pokemon.getStats();
